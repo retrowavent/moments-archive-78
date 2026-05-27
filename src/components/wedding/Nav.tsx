@@ -7,7 +7,7 @@ const links = [
   { href: "#photos", label: "Фото" },
   { href: "#video", label: "Видео" },
   { href: "#wishes", label: "Пожелания" },
-  { href: "#download", label: "Скачать" },
+  { href: "#download", label: "Скачать все фото" },
 ];
 
 export function Nav() {
