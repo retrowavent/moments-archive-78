@@ -205,3 +205,14 @@
     transform: none !important;
   }
 }
+
+@keyframes wishes-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.wishes-track {
+  animation: wishes-marquee 55s linear infinite;
+}
+.wishes-track:hover {
+  animation-play-state: paused;
+}

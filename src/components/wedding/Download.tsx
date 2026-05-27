@@ -80,11 +80,11 @@ export function Download() {
           : `Скачать архив · ${archive.length} фото`;
 
   return (
-    <section id="download" className="relative bg-background py-24 md:py-32">
+    <section id="download" className="relative bg-background py-16 md:py-20">
       <div className="mx-auto max-w-3xl px-6">
         <div
           ref={ref}
-          className="reveal relative overflow-hidden rounded-2xl border border-border bg-surface/60 p-10 text-center backdrop-blur-md md:p-14"
+          className="reveal relative overflow-hidden rounded-2xl border border-border bg-surface/60 p-8 text-center backdrop-blur-md md:p-10"
         >
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-accent/40 text-accent">
             <CloudDownload size={22} />
@@ -113,10 +113,6 @@ export function Download() {
               />
             </div>
           )}
-
-          <p className="mt-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            Доступно 30 дней
-          </p>
           <span className="pointer-events-none absolute inset-x-10 -bottom-24 h-40 bg-accent/15 blur-3xl" />
         </div>
       </div>

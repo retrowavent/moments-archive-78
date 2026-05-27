@@ -24,10 +24,10 @@ import f4 from "@/assets/images/first-dance/first-dance4.png";
 import f5 from "@/assets/images/first-dance/first-dance5.png";
 
 const sections = [
-  { id: "bridal", title: "Bridal Preparation", time: "08:00 – 11:00", text: "Тихий свет утра, нежность и ожидание.", photos: [b1, b2, b3, b4] },
-  { id: "ceremony", title: "Ceremony", time: "12:00 – 13:00", text: "Слова клятвы и взгляды, в которых остановилось время.", photos: [c1, c2, c3, c4, c5, c6] },
-  { id: "reception", title: "Reception", time: "17:00 – 22:00", text: "Свечи, смех и тепло семьи в каждом кадре.", photos: [r1, r2, r3, r4, r5] },
-  { id: "dance", title: "First Dance & Fireworks", time: "22:00 – 00:30", text: "Финальный аккорд вечера: танец и огни в ночном небе.", photos: [f1, f2, f3, f4, f5] },
+  { id: "bridal", title: "Утро невесты", time: "08:00 – 11:00", text: "Тихий свет утра, нежность и ожидание.", photos: [b1, b2, b3, b4] },
+  { id: "ceremony", title: "Церемония", time: "12:00 – 13:00", text: "Слова клятвы и взгляды, в которых остановилось время.", photos: [c1, c2, c3, c4, c5, c6] },
+  { id: "reception", title: "Банкет", time: "17:00 – 22:00", text: "Свечи, смех и тепло семьи в каждом кадре.", photos: [r1, r2, r3, r4, r5] },
+  { id: "dance", title: "Первый танец и салют", time: "22:00 – 00:30", text: "Финальный аккорд вечера: танец и огни в ночном небе.", photos: [f1, f2, f3, f4, f5] },
 ] as const;
 
 export function WeddingDay() {
@@ -50,6 +50,7 @@ export function WeddingDay() {
               sec={sec}
               idx={idx}
               onOpenPhoto={(i) => setViewer({ photos: sec.photos.map((src, j) => ({ src, alt: `${sec.title} ${j + 1}`, video: sec.id === "dance" && j === 1 })), index: i, title: sec.title })}
+              onOpenAll={() => setViewer({ photos: sec.photos.map((src, j) => ({ src, alt: `${sec.title} ${j + 1}`, video: sec.id === "dance" && j === 1 })), index: 0, title: sec.title })}
             />
           ))}
         </div>
@@ -59,7 +60,7 @@ export function WeddingDay() {
   );
 }
 
-function GallerySection({ sec, idx, onOpenPhoto }: { sec: (typeof sections)[number]; idx: number; onOpenPhoto: (i: number) => void }) {
+function GallerySection({ sec, idx, onOpenPhoto, onOpenAll }: { sec: (typeof sections)[number]; idx: number; onOpenPhoto: (i: number) => void; onOpenAll: () => void }) {
   const ref = useReveal<HTMLDivElement>();
   const layout = [
     "grid-cols-2 md:grid-cols-4 md:auto-rows-[180px]",
@@ -89,8 +90,8 @@ function GallerySection({ sec, idx, onOpenPhoto }: { sec: (typeof sections)[numb
       </div>
 
       <div className="mt-8 flex justify-center md:mt-10">
-        <button className="group inline-flex items-center gap-3 rounded-full border border-accent/40 px-7 py-3 text-[11px] uppercase tracking-[0.3em] text-ivory transition-all duration-500 hover:border-accent hover:bg-accent hover:text-accent-foreground hover:shadow-glow">
-          Смотреть сцену <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+        <button onClick={onOpenAll} className="group inline-flex items-center gap-3 rounded-full border border-accent/40 px-7 py-3 text-[11px] uppercase tracking-[0.3em] text-ivory transition-all duration-500 hover:border-accent hover:bg-accent hover:text-accent-foreground hover:shadow-glow">
+          Смотреть все фото <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </button>
       </div>
     </article>
