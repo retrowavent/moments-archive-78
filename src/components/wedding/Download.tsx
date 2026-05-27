@@ -3,36 +3,36 @@ import { CloudDownload, Loader2, CheckCircle2 } from "lucide-react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { useReveal } from "@/hooks/use-reveal";
-import hero from "@/assets/hero.jpg";
-import g1 from "@/assets/g1.jpg";
-import g2 from "@/assets/g2.jpg";
-import g3 from "@/assets/g3.jpg";
-import g4 from "@/assets/g4.jpg";
-import g5 from "@/assets/g5.jpg";
-import g6 from "@/assets/g6.jpg";
-import g7 from "@/assets/g7.jpg";
-import g8 from "@/assets/g8.jpg";
-import t1 from "@/assets/t1.jpg";
-import t2 from "@/assets/t2.jpg";
-import t3 from "@/assets/t3.jpg";
-import t4 from "@/assets/t4.jpg";
-import t5 from "@/assets/t5.jpg";
+import hero from "@/assets/images/hero/hero.png";
+import g1 from "@/assets/images/bridal-prep/bridal-prep1.png";
+import g2 from "@/assets/images/bridal-prep/bridal-prep2.png";
+import g3 from "@/assets/images/ceremony/ceremony1.png";
+import g4 from "@/assets/images/ceremony/ceremony2.png";
+import g5 from "@/assets/images/reception/reception1.png";
+import g6 from "@/assets/images/reception/reception2.png";
+import g7 from "@/assets/images/first-dance/first-dance1.png";
+import g8 from "@/assets/images/first-dance/first-dance2.png";
+import t1 from "@/assets/images/love-story/love-story1.png";
+import t2 from "@/assets/images/love-story/love-story2.png";
+import t3 from "@/assets/images/love-story/love-story3.png";
+import t4 from "@/assets/images/love-story/love-story4.png";
+import t5 from "@/assets/images/love-story/love-story5.png";
 
 const archive: { url: string; name: string }[] = [
-  { url: hero, name: "01-hero.jpg" },
-  { url: t1, name: "story-2018.jpg" },
-  { url: t2, name: "story-2019.jpg" },
-  { url: t3, name: "story-2020.jpg" },
-  { url: t4, name: "story-2022.jpg" },
-  { url: t5, name: "story-2026.jpg" },
-  { url: g1, name: "day-01.jpg" },
-  { url: g2, name: "day-02.jpg" },
-  { url: g3, name: "day-03.jpg" },
-  { url: g4, name: "day-04.jpg" },
-  { url: g5, name: "day-05.jpg" },
-  { url: g6, name: "day-06.jpg" },
-  { url: g7, name: "day-07.jpg" },
-  { url: g8, name: "day-08.jpg" },
+  { url: hero, name: "01-hero.png" },
+  { url: t1, name: "story-2018.png" },
+  { url: t2, name: "story-2019.png" },
+  { url: t3, name: "story-2020.png" },
+  { url: t4, name: "story-2022.png" },
+  { url: t5, name: "story-2026.png" },
+  { url: g1, name: "day-01.png" },
+  { url: g2, name: "day-02.png" },
+  { url: g3, name: "day-03.png" },
+  { url: g4, name: "day-04.png" },
+  { url: g5, name: "day-05.png" },
+  { url: g6, name: "day-06.png" },
+  { url: g7, name: "day-07.png" },
+  { url: g8, name: "day-08.png" },
 ];
 
 type State = "idle" | "loading" | "done" | "error";
@@ -80,16 +80,16 @@ export function Download() {
           : `Скачать архив · ${archive.length} фото`;
 
   return (
-    <section id="download" className="relative bg-background py-24 md:py-32">
+    <section id="download" className="relative bg-background py-8 md:py-10">
       <div className="mx-auto max-w-3xl px-6">
         <div
           ref={ref}
-          className="reveal relative overflow-hidden rounded-2xl border border-border bg-surface/60 p-10 text-center backdrop-blur-md md:p-14"
+          className="reveal relative overflow-hidden rounded-2xl border border-border bg-surface/60 p-5 text-center backdrop-blur-md md:p-6"
         >
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-accent/40 text-accent">
             <CloudDownload size={22} />
           </div>
-          <h3 className="mt-6 font-display text-3xl text-ivory md:text-4xl">
+          <h3 className="mt-4 font-display text-3xl text-ivory md:text-4xl">
             Скачать все фото
           </h3>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
@@ -98,7 +98,7 @@ export function Download() {
           <button
             onClick={handleDownload}
             disabled={state === "loading"}
-            className="mt-8 inline-flex items-center gap-3 rounded-full bg-gold px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-accent-foreground transition-all duration-500 hover:shadow-glow disabled:cursor-wait disabled:opacity-80"
+            className="mt-5 inline-flex items-center gap-3 rounded-full bg-gold px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-accent-foreground transition-all duration-500 hover:shadow-glow disabled:cursor-wait disabled:opacity-80"
           >
             {state === "loading" && <Loader2 size={14} className="animate-spin" />}
             {state === "done" && <CheckCircle2 size={14} />}
@@ -113,10 +113,6 @@ export function Download() {
               />
             </div>
           )}
-
-          <p className="mt-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            Доступно 30 дней
-          </p>
           <span className="pointer-events-none absolute inset-x-10 -bottom-24 h-40 bg-accent/15 blur-3xl" />
         </div>
       </div>

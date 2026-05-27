@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/wedding/Nav";
 import { Hero } from "@/components/wedding/Hero";
 import { LoveStory } from "@/components/wedding/LoveStory";
 import { WeddingDay } from "@/components/wedding/WeddingDay";
@@ -31,7 +30,6 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="relative bg-background text-foreground">
-      <Nav />
       <Hero />
       <LoveStory />
       <WeddingDay />
