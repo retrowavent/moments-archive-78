@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Play, X } from "lucide-react";
+import { Play, X, ArrowRight } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
@@ -39,6 +39,8 @@ const sections: { id: string; title: string; time: string; count: number; text: 
       { src: g1, alt: "Сборы невесты", span: "col-span-2 row-span-2", ratio: "aspect-[3/4]" },
       { src: g6, alt: "Деталь — букет", span: "col-span-1 row-span-1", ratio: "aspect-square" },
       { src: g4, alt: "Невеста в свете", span: "col-span-1 row-span-1", ratio: "aspect-square" },
+      { src: g2, alt: "Утренний портрет", span: "col-span-1 row-span-1", ratio: "aspect-square" },
+      { src: g5, alt: "Платье и детали", span: "col-span-1 row-span-1", ratio: "aspect-square" },
     ],
   },
   {
@@ -50,6 +52,8 @@ const sections: { id: string; title: string; time: string; count: number; text: 
     photos: [
       { src: g3, alt: "Церемония", span: "col-span-3 row-span-2", ratio: "aspect-[16/10]", video: true },
       { src: g2, alt: "Жених", span: "col-span-1 row-span-1", ratio: "aspect-[3/4]" },
+      { src: g4, alt: "Кольца", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
+      { src: g8, alt: "Гости", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
     ],
   },
   {
@@ -60,7 +64,10 @@ const sections: { id: string; title: string; time: string; count: number; text: 
     text: "Свечи, бокалы, и голоса самых близких — вечер длиной в сердце.",
     photos: [
       { src: g5, alt: "Банкет", span: "col-span-2 row-span-2", ratio: "aspect-square" },
-      { src: g7, alt: "Первый танец", span: "col-span-2 row-span-2", ratio: "aspect-[16/10]", video: true },
+      { src: g7, alt: "Тост", span: "col-span-2 row-span-2", ratio: "aspect-[16/10]", video: true },
+      { src: g6, alt: "Сервировка", span: "col-span-1 row-span-1", ratio: "aspect-square" },
+      { src: g1, alt: "Гости", span: "col-span-1 row-span-1", ratio: "aspect-square" },
+      { src: g3, alt: "Свечи и бокалы", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
     ],
   },
   {
@@ -72,6 +79,8 @@ const sections: { id: string; title: string; time: string; count: number; text: 
     photos: [
       { src: g7, alt: "Первый танец", span: "col-span-2 row-span-2", ratio: "aspect-[16/10]" },
       { src: g8, alt: "Салют", span: "col-span-2 row-span-2", ratio: "aspect-[3/4]" },
+      { src: g4, alt: "В кругу света", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]", video: true },
+      { src: g3, alt: "Финал вечера", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
     ],
   },
 ];
@@ -197,6 +206,13 @@ function GallerySection({
             <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           </button>
         ))}
+      </div>
+
+      <div className="mt-8 flex justify-center md:mt-12">
+        <button className="group inline-flex items-center gap-3 rounded-full border border-accent/40 px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-ivory transition-all duration-500 hover:border-accent hover:bg-accent hover:text-accent-foreground hover:shadow-glow">
+          Смотреть все {sec.count} фото · {sec.title.toLowerCase()}
+          <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+        </button>
       </div>
     </div>
   );

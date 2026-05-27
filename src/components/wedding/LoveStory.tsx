@@ -10,7 +10,7 @@ const milestones = [
   { year: "2019", title: "Начало отношений", text: "Тишина, в которой мы услышали друг друга.", img: t2 },
   { year: "2020", title: "Путешествия", text: "Города, рассветы, и одно общее небо.", img: t3 },
   { year: "2022", title: "Предложение", text: "Свечи, дрожь в руках, и слово «да».", img: t4 },
-  { year: "2024", title: "Наша свадьба", text: "День, который теперь живёт в нас навсегда.", img: t5 },
+  { year: "2026", title: "Наша свадьба", text: "День, который теперь живёт в нас навсегда.", img: t5 },
 ];
 
 export function LoveStory() {
@@ -61,7 +61,7 @@ function Milestone({ m, index }: { m: (typeof milestones)[number]; index: number
           src={m.img}
           alt={m.title}
           loading="lazy"
-          className="aspect-[4/5] w-full object-cover transition-transform duration-[1500ms] hover:scale-[1.04]"
+          className="aspect-[3/4] w-full object-cover object-center transition-transform duration-[1500ms] hover:scale-[1.04]"
         />
       </div>
       <h3 className="mt-5 font-display text-2xl text-ivory">{m.title}</h3>

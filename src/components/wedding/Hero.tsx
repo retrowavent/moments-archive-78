@@ -34,7 +34,7 @@ export function Hero() {
           </p>
           <div className="mt-10 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.4em] text-ivory/70">
             <span className="h-px w-8 bg-accent/60" />
-            20 августа 2024
+            20 августа 2026
             <span className="h-px w-8 bg-accent/60" />
           </div>
 
@@ -51,11 +51,10 @@ export function Hero() {
 
         <a
           href="#story"
-          className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-ivory/70"
+          className="group absolute bottom-8 left-1/2 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-accent/40 text-ivory/80 transition-all duration-500 hover:border-accent hover:text-accent hover:shadow-glow"
           aria-label="Прокрутить вниз"
         >
-          <span className="text-[9px] uppercase tracking-[0.4em]">Scroll</span>
-          <ChevronDown className="animate-float-slow" size={16} />
+          <ChevronDown className="animate-float-slow transition-transform group-hover:translate-y-0.5" size={16} />
         </a>
       </div>
     </section>
