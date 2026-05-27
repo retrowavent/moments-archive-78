@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Play, X, ArrowRight } from "lucide-react";
+import { Play, ArrowRight } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { PhotoViewer, type ViewerPhoto } from "./PhotoViewer";
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";
@@ -20,15 +21,33 @@ const stages = [
   { id: "party", label: "Вечеринка", time: "22:00" },
 ];
 
-type Photo = {
-  src: string;
-  alt: string;
+type Photo = ViewerPhoto & {
   span: string;
   ratio: string;
-  video?: boolean;
 };
 
-const sections: { id: string; title: string; time: string; count: number; text: string; photos: Photo[] }[] = [
+const pool = [g1, g2, g3, g4, g5, g6, g7, g8];
+
+function buildAll(seed: number, count: number, videoIndices: number[] = []): ViewerPhoto[] {
+  // Build a deterministic full-gallery list of `count` items by cycling through pool
+  return Array.from({ length: count }, (_, i) => ({
+    src: pool[(seed + i) % pool.length],
+    alt: `Кадр ${i + 1}`,
+    video: videoIndices.includes(i),
+  }));
+}
+
+type Section = {
+  id: string;
+  title: string;
+  time: string;
+  count: number;
+  text: string;
+  photos: Photo[];
+  all: ViewerPhoto[];
+};
+
+const sections: Section[] = [
   {
     id: "bride",
     title: "Сборы невесты",
@@ -42,6 +61,7 @@ const sections: { id: string; title: string; time: string; count: number; text: 
       { src: g2, alt: "Утренний портрет", span: "col-span-1 row-span-1", ratio: "aspect-square" },
       { src: g5, alt: "Платье и детали", span: "col-span-1 row-span-1", ratio: "aspect-square" },
     ],
+    all: buildAll(0, 64),
   },
   {
     id: "ceremony",
@@ -55,6 +75,7 @@ const sections: { id: string; title: string; time: string; count: number; text: 
       { src: g4, alt: "Кольца", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
       { src: g8, alt: "Гости", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
     ],
+    all: buildAll(2, 58, [0, 12]),
   },
   {
     id: "banquet",
@@ -69,6 +90,7 @@ const sections: { id: string; title: string; time: string; count: number; text: 
       { src: g1, alt: "Гости", span: "col-span-1 row-span-1", ratio: "aspect-square" },
       { src: g3, alt: "Свечи и бокалы", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
     ],
+    all: buildAll(4, 124, [1, 20, 60]),
   },
   {
     id: "party",
@@ -82,12 +104,19 @@ const sections: { id: string; title: string; time: string; count: number; text: 
       { src: g4, alt: "В кругу света", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]", video: true },
       { src: g3, alt: "Финал вечера", span: "col-span-2 row-span-1", ratio: "aspect-[16/9]" },
     ],
+    all: buildAll(6, 86, [4, 30]),
   },
 ];
 
+type ViewerState = {
+  photos: ViewerPhoto[];
+  index: number;
+  title: string;
+} | null;
+
 export function WeddingDay() {
   const headRef = useReveal<HTMLDivElement>();
-  const [lightbox, setLightbox] = useState<Photo | null>(null);
+  const [viewer, setViewer] = useState<ViewerState>(null);
 
   return (
     <section id="day" className="relative bg-surface py-28 md:py-40">
@@ -131,30 +160,38 @@ export function WeddingDay() {
         {/* Photo gallery sections */}
         <div id="photos" className="mt-24 space-y-28 md:space-y-40">
           {sections.map((sec) => (
-            <GallerySection key={sec.id} sec={sec} onOpen={setLightbox} />
+            <GallerySection
+              key={sec.id}
+              sec={sec}
+              onOpenPhoto={(i) =>
+                setViewer({
+                  photos: [
+                    ...sec.photos.map((p) => ({
+                      src: p.src,
+                      alt: p.alt,
+                      video: p.video,
+                    })),
+                    ...sec.all.slice(sec.photos.length),
+                  ],
+                  index: i,
+                  title: sec.title,
+                })
+              }
+              onOpenAll={() =>
+                setViewer({ photos: sec.all, index: 0, title: sec.title })
+              }
+            />
           ))}
         </div>
       </div>
 
-      {/* Lightbox */}
-      {lightbox && (
-        <div
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-background/95 backdrop-blur-2xl animate-fade-in"
-          onClick={() => setLightbox(null)}
-        >
-          <button
-            className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-border text-ivory hover:border-accent hover:text-accent"
-            onClick={() => setLightbox(null)}
-            aria-label="Закрыть"
-          >
-            <X size={18} />
-          </button>
-          <img
-            src={lightbox.src}
-            alt={lightbox.alt}
-            className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain shadow-soft"
-          />
-        </div>
+      {viewer && (
+        <PhotoViewer
+          photos={viewer.photos}
+          startIndex={viewer.index}
+          title={viewer.title}
+          onClose={() => setViewer(null)}
+        />
       )}
     </section>
   );
@@ -162,10 +199,12 @@ export function WeddingDay() {
 
 function GallerySection({
   sec,
-  onOpen,
+  onOpenPhoto,
+  onOpenAll,
 }: {
-  sec: (typeof sections)[number];
-  onOpen: (p: Photo) => void;
+  sec: Section;
+  onOpenPhoto: (i: number) => void;
+  onOpenAll: () => void;
 }) {
   const ref = useReveal<HTMLDivElement>();
   return (
@@ -186,7 +225,7 @@ function GallerySection({
         {sec.photos.map((p, i) => (
           <button
             key={i}
-            onClick={() => onOpen(p)}
+            onClick={() => onOpenPhoto(i)}
             className={`group relative overflow-hidden rounded-xl bg-background ${p.span} shadow-card`}
           >
             <img
@@ -209,7 +248,10 @@ function GallerySection({
       </div>
 
       <div className="mt-8 flex justify-center md:mt-12">
-        <button className="group inline-flex items-center gap-3 rounded-full border border-accent/40 px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-ivory transition-all duration-500 hover:border-accent hover:bg-accent hover:text-accent-foreground hover:shadow-glow">
+        <button
+          onClick={onOpenAll}
+          className="group inline-flex items-center gap-3 rounded-full border border-accent/40 px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-ivory transition-all duration-500 hover:border-accent hover:bg-accent hover:text-accent-foreground hover:shadow-glow"
+        >
           Смотреть все {sec.count} фото · {sec.title.toLowerCase()}
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </button>
