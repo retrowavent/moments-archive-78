@@ -35,7 +35,7 @@ export function WeddingDay() {
   const [viewer, setViewer] = useState<{ photos: ViewerPhoto[]; index: number; title: string } | null>(null);
 
   return (
-    <section id="day" className="relative overflow-hidden bg-surface py-28 md:py-44">
+    <section id="day" className="relative overflow-hidden bg-surface py-20 md:py-28">
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-accent/8 to-transparent" />
       <div className="mx-auto max-w-7xl px-6">
         <div ref={headRef} className="reveal text-center">
@@ -43,7 +43,7 @@ export function WeddingDay() {
           <h2 className="font-display text-5xl md:text-8xl"><span className="italic">День</span> свадьбы</h2>
         </div>
 
-        <div className="mt-20 space-y-24 md:space-y-36">
+        <div className="mt-14 space-y-16 md:space-y-24">
           {sections.map((sec, idx) => (
             <GallerySection
               key={sec.id}

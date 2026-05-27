@@ -211,7 +211,12 @@
   to { transform: translateX(-50%); }
 }
 .wishes-track {
-  animation: wishes-marquee 55s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: wishes-marquee 80s linear infinite;
+}
+.wishes-group {
+  flex-shrink: 0;
 }
 .wishes-track:hover {
   animation-play-state: paused;

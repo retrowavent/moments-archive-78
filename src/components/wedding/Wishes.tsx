@@ -10,10 +10,9 @@ const wishes = [
 
 export function Wishes() {
   const ref = useReveal<HTMLDivElement>();
-  const list = [...wishes, ...wishes];
 
   return (
-    <section id="wishes" className="relative overflow-hidden bg-surface py-28 md:py-40">
+    <section id="wishes" className="relative overflow-hidden bg-surface py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div ref={ref} className="reveal text-center">
           <p className="mb-4 text-[10px] uppercase tracking-[0.5em] text-accent">Глава IV</p>
@@ -21,9 +20,10 @@ export function Wishes() {
           <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">Слова, которые мы будем перечитывать ещё много лет.</p>
         </div>
 
-        <div className="mt-14 overflow-x-auto pb-2 [scrollbar-width:thin]" dir="rtl">
-          <div className="wishes-track flex w-max gap-5 pr-2">
-            {list.map((w, i) => (
+        <div className="mt-12 overflow-x-auto pb-2 [scrollbar-width:thin]" dir="rtl">
+          <div className="wishes-track">
+            <div className="wishes-group flex w-max gap-5 pr-2">
+            {[...wishes, ...wishes].map((w, i) => (
               <article key={`${w.initials}-${i}`} className="w-[300px] flex-shrink-0 overflow-hidden rounded-2xl border border-border bg-background/40 p-7 backdrop-blur-md md:w-[360px] md:p-9">
                 <div className="flex items-center gap-4" dir="ltr">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold font-display text-base text-accent-foreground">{w.initials}</div>
@@ -35,6 +35,21 @@ export function Wishes() {
                 <p className="mt-6 text-[15px] leading-relaxed text-ivory/85 md:text-base">“{w.text}”</p>
               </article>
             ))}
+            </div>
+            <div className="wishes-group flex w-max gap-5 pr-2" aria-hidden="true">
+              {[...wishes, ...wishes].map((w, i) => (
+                <article key={`clone-${w.initials}-${i}`} className="w-[300px] flex-shrink-0 overflow-hidden rounded-2xl border border-border bg-background/40 p-7 backdrop-blur-md md:w-[360px] md:p-9">
+                  <div className="flex items-center gap-4" dir="ltr">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold font-display text-base text-accent-foreground">{w.initials}</div>
+                    <div>
+                      <p className="font-display text-xl text-ivory">{w.name}</p>
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{w.date}</p>
+                    </div>
+                  </div>
+                  <p className="mt-6 text-[15px] leading-relaxed text-ivory/85 md:text-base">“{w.text}”</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </div>

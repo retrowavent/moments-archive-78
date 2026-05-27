@@ -18,6 +18,12 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(212,163,115,0.22),transparent_55%)]" />
       </div>
 
+      <div className="absolute top-6 left-1/2 z-20 -translate-x-1/2 text-center md:top-8">
+        <p className="font-display text-2xl tracking-[0.28em] text-ivory md:text-3xl">
+          A <span className="text-accent">&</span> D
+        </p>
+      </div>
+
       <div className="relative z-10 flex h-full flex-col justify-end">
         <div className="mx-auto w-full max-w-6xl px-6 pb-24 text-center md:pb-32">
           <p className="mb-6 text-[10px] uppercase tracking-[0.5em] text-accent animate-fade-in">⸻ Наш вечный архив ⸻</p>

@@ -16,7 +16,7 @@ const milestones = [
 export function LoveStory() {
   const ref = useReveal<HTMLDivElement>();
   return (
-    <section id="story" className="relative overflow-hidden bg-background py-28 md:py-44">
+    <section id="story" className="relative overflow-hidden bg-background py-20 md:py-28">
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-accent/10 to-transparent" />
       <div className="mx-auto max-w-7xl px-6">
         <div ref={ref} className="reveal mb-16 text-center md:mb-24">

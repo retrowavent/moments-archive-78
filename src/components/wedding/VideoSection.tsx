@@ -5,7 +5,7 @@ import { useReveal } from "@/hooks/use-reveal";
 export function VideoSection() {
   const ref = useReveal<HTMLDivElement>();
   return (
-    <section id="video" className="relative overflow-hidden bg-background py-28 md:py-40">
+    <section id="video" className="relative overflow-hidden bg-background py-20 md:py-28">
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-accent/10 to-transparent" />
       <div className="mx-auto max-w-7xl px-6 text-center">
         <p className="mb-4 text-[10px] uppercase tracking-[0.5em] text-accent">Глава III</p>
