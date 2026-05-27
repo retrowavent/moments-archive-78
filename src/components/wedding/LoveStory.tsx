@@ -26,7 +26,7 @@ export function LoveStory() {
           <div className="mx-auto mt-8 h-px w-24 bg-accent/60" />
         </div>
 
-        {/* Mobile: vertical timeline. Desktop: horizontal scroll */}
+        {/* Mobile: vertical timeline */}
         <div className="md:hidden">
           <div className="relative space-y-12 pl-8">
             <div className="absolute left-2 top-2 bottom-2 w-px bg-gradient-to-b from-accent/60 via-accent/20 to-transparent" />
@@ -36,13 +36,12 @@ export function LoveStory() {
           </div>
         </div>
 
+        {/* Desktop: full-fit 5-column grid */}
         <div className="hidden md:block">
-          <div className="-mx-6 overflow-x-auto px-6 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex gap-8">
-              {milestones.map((m, i) => (
-                <MilestoneCard key={m.year} m={m} index={i} />
-              ))}
-            </div>
+          <div className="grid grid-cols-5 gap-5 lg:gap-7">
+            {milestones.map((m, i) => (
+              <MilestoneCard key={m.year} m={m} index={i} />
+            ))}
           </div>
         </div>
       </div>
@@ -75,7 +74,7 @@ function MilestoneCard({ m, index }: { m: (typeof milestones)[number]; index: nu
   return (
     <article
       ref={ref}
-      className="reveal group w-[340px] flex-shrink-0"
+      className="reveal group flex flex-col"
       style={{ transitionDelay: `${index * 100}ms` }}
     >
       <div className="relative overflow-hidden rounded-2xl shadow-card">
@@ -83,15 +82,19 @@ function MilestoneCard({ m, index }: { m: (typeof milestones)[number]; index: nu
           src={m.img}
           alt={m.title}
           loading="lazy"
-          className="aspect-[4/5] w-full object-cover transition-transform duration-[1800ms] group-hover:scale-110"
+          className="aspect-[3/4] w-full object-cover object-center transition-transform duration-[1800ms] group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-        <p className="absolute top-5 left-6 font-display text-4xl text-ivory">{m.year}</p>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-background/30" />
+        <p className="absolute left-4 top-3 font-display text-3xl text-ivory drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] lg:text-4xl">
+          {m.year}
+        </p>
       </div>
-      <h3 className="mt-6 font-display text-3xl text-ivory transition-colors group-hover:text-accent">
+      <h3 className="mt-5 font-display text-xl text-ivory transition-colors group-hover:text-accent lg:text-2xl">
         {m.title}
       </h3>
-      <p className="mt-2 max-w-[28ch] text-sm leading-relaxed text-muted-foreground">{m.text}</p>
+      <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground lg:text-sm">
+        {m.text}
+      </p>
     </article>
   );
 }

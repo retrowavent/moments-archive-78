@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const pool = [
   {
@@ -80,8 +81,10 @@ export function Wishes() {
   const ref = useReveal<HTMLDivElement>();
   const [visible, setVisible] = useState<number[]>(() => pickInitial());
   const [fadingSlot, setFadingSlot] = useState<number | null>(null);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
+    if (reduced) return; // respect prefers-reduced-motion — no auto-rotation
     const interval = setInterval(() => {
       const slot = Math.floor(Math.random() * VISIBLE);
       setFadingSlot(slot);
@@ -100,7 +103,7 @@ export function Wishes() {
       }, 700);
     }, 4200);
     return () => clearInterval(interval);
-  }, []);
+  }, [reduced]);
 
   return (
     <section id="wishes" className="relative bg-surface py-28 md:py-40">

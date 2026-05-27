@@ -187,3 +187,21 @@
   }
   .animate-shimmer-line { animation: shimmer-line 2.4s ease-in-out infinite; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .ken-burns,
+  .animate-float-slow,
+  .animate-shimmer-line {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
