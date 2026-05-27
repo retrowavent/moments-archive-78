@@ -1,4 +1,3 @@
-import { Heart, Instagram, Send } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 
 export function ThankYou() {
@@ -23,27 +22,11 @@ export function ThankYou() {
           </p>
         </div>
 
-        <div className="mt-20 flex items-center justify-center gap-6">
-          <SocialIcon icon={<Instagram size={16} />} />
-          <SocialIcon icon={<Send size={16} />} />
-          <SocialIcon icon={<Heart size={16} />} />
-        </div>
-
         <p className="mt-10 text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
-          Made with <span className="text-accent">♡</span> · 2024
+          Сделано с <span className="text-accent">любовью</span> · 2024
         </p>
       </div>
     </section>
   );
 }
 
-function SocialIcon({ icon }: { icon: React.ReactNode }) {
-  return (
-    <a
-      href="#"
-      className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ivory/80 transition-all duration-500 hover:border-accent hover:text-accent hover:shadow-glow"
-    >
-      {icon}
-    </a>
-  );
-}
