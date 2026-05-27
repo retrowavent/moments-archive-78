@@ -213,7 +213,7 @@
 .wishes-track {
   display: flex;
   width: max-content;
-  animation: wishes-marquee 80s linear infinite;
+  animation: wishes-marquee 70s linear infinite; will-change: transform;
 }
 .wishes-group {
   flex-shrink: 0;
