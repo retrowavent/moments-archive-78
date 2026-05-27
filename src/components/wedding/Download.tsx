@@ -3,36 +3,36 @@ import { CloudDownload, Loader2, CheckCircle2 } from "lucide-react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { useReveal } from "@/hooks/use-reveal";
-import hero from "@/assets/hero.jpg";
-import g1 from "@/assets/g1.jpg";
-import g2 from "@/assets/g2.jpg";
-import g3 from "@/assets/g3.jpg";
-import g4 from "@/assets/g4.jpg";
-import g5 from "@/assets/g5.jpg";
-import g6 from "@/assets/g6.jpg";
-import g7 from "@/assets/g7.jpg";
-import g8 from "@/assets/g8.jpg";
-import t1 from "@/assets/t1.jpg";
-import t2 from "@/assets/t2.jpg";
-import t3 from "@/assets/t3.jpg";
-import t4 from "@/assets/t4.jpg";
-import t5 from "@/assets/t5.jpg";
+import hero from "@/assets/images/hero/hero.png";
+import g1 from "@/assets/images/bridal-prep/bridal-prep1.png";
+import g2 from "@/assets/images/bridal-prep/bridal-prep2.png";
+import g3 from "@/assets/images/ceremony/ceremony1.png";
+import g4 from "@/assets/images/ceremony/ceremony2.png";
+import g5 from "@/assets/images/reception/reception1.png";
+import g6 from "@/assets/images/reception/reception2.png";
+import g7 from "@/assets/images/first-dance/first-dance1.png";
+import g8 from "@/assets/images/first-dance/first-dance2.png";
+import t1 from "@/assets/images/love-story/love-story1.png";
+import t2 from "@/assets/images/love-story/love-story2.png";
+import t3 from "@/assets/images/love-story/love-story3.png";
+import t4 from "@/assets/images/love-story/love-story4.png";
+import t5 from "@/assets/images/love-story/love-story5.png";
 
 const archive: { url: string; name: string }[] = [
-  { url: hero, name: "01-hero.jpg" },
-  { url: t1, name: "story-2018.jpg" },
-  { url: t2, name: "story-2019.jpg" },
-  { url: t3, name: "story-2020.jpg" },
-  { url: t4, name: "story-2022.jpg" },
-  { url: t5, name: "story-2026.jpg" },
-  { url: g1, name: "day-01.jpg" },
-  { url: g2, name: "day-02.jpg" },
-  { url: g3, name: "day-03.jpg" },
-  { url: g4, name: "day-04.jpg" },
-  { url: g5, name: "day-05.jpg" },
-  { url: g6, name: "day-06.jpg" },
-  { url: g7, name: "day-07.jpg" },
-  { url: g8, name: "day-08.jpg" },
+  { url: hero, name: "01-hero.png" },
+  { url: t1, name: "story-2018.png" },
+  { url: t2, name: "story-2019.png" },
+  { url: t3, name: "story-2020.png" },
+  { url: t4, name: "story-2022.png" },
+  { url: t5, name: "story-2026.png" },
+  { url: g1, name: "day-01.png" },
+  { url: g2, name: "day-02.png" },
+  { url: g3, name: "day-03.png" },
+  { url: g4, name: "day-04.png" },
+  { url: g5, name: "day-05.png" },
+  { url: g6, name: "day-06.png" },
+  { url: g7, name: "day-07.png" },
+  { url: g8, name: "day-08.png" },
 ];
 
 type State = "idle" | "loading" | "done" | "error";
