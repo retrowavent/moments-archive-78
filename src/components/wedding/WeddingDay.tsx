@@ -207,6 +207,13 @@ function GallerySection({
           </button>
         ))}
       </div>
+
+      <div className="mt-8 flex justify-center md:mt-12">
+        <button className="group inline-flex items-center gap-3 rounded-full border border-accent/40 px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-ivory transition-all duration-500 hover:border-accent hover:bg-accent hover:text-accent-foreground hover:shadow-glow">
+          Смотреть все {sec.count} фото · {sec.title.toLowerCase()}
+          <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+        </button>
+      </div>
     </div>
   );
 }
