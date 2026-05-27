@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-
+import faviconUrl from "@/assets/images/favicon.jpg?url";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
